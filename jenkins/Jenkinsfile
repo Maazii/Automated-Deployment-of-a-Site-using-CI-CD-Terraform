@@ -2,25 +2,25 @@ pipeline {
     agent any
     
     stages {
-        stage("Check Terraform Version"){
+        stage("Check Jenkinsfile Access"){
             steps{
-                bat "terraform version"
+                echo "Hello World!"
             }
         }
-        stage("Find Infrastructure"){
-            steps{
-                bat "cd infrastructure-code"
-            }
-        }
-        stage("Terraform Validate"){
-            steps{
-                bat "terraform validate"
-            }
-        }
-        stage("Terraform Plan"){
-            steps{
-                bat "terraform plan"
-            }
-        }
+        // stage("Find Infrastructure"){
+        //     steps{
+        //         bat "cd infrastructure-code"
+        //     }
+        // }
+        // stage("Terraform Validate"){
+        //     steps{
+        //         bat "terraform validate"
+        //     }
+        // }
+        // stage("Terraform Plan"){
+        //     steps{
+        //         bat "terraform plan"
+        //     }
+        // }
     }
 }
