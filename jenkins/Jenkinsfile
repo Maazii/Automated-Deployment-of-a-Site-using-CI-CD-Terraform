@@ -9,7 +9,7 @@ pipeline {
         }
         stage("Find Infrastructure"){
             steps{
-                cd ".\\infrastructure-code\\"
+                sh "cd infrastructure-code"
             }
         }
         stage("Terraform Initialize"){
