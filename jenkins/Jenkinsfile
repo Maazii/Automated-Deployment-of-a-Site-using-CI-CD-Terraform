@@ -12,15 +12,20 @@ pipeline {
                 bat "cd infrastructure-code"
             }
         }
-        stage("Terraform Validate"){
+        stage("Terraform Initialize"){
             steps{
                 bat "terraform validate"
             }
         }
-        stage("Terraform Plan"){
-            steps{
-                bat "terraform plan"
-            }
-        }
+        // stage("Terraform Validate"){
+        //     steps{
+        //         bat "terraform validate"
+        //     }
+        // }
+        // stage("Terraform Plan"){
+        //     steps{
+        //         bat "terraform plan"
+        //     }
+        // }
     }
 }
