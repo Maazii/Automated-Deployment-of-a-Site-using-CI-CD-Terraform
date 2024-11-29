@@ -9,7 +9,10 @@ pipeline {
         }
         stage("Find Terraform and Initialize"){
             steps{
-                bat "cd infrastructure-code && terraform init"
+                bat '''
+                    cd .\\infrastructure-code
+                    terraform init
+                '''
             }
         }
         stage("Terraform Validate"){
