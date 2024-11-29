@@ -7,20 +7,20 @@ pipeline {
                 bat "terraform version"
             }
         }
-        stage("Find Infrastructure"){
-            steps{
-                bat "cd infrastructure-code"
-            }
-        }
-        stage("Terraform Validate"){
-            steps{
-                bat "terraform validate"
-            }
-        }
-        stage("Terraform Plan"){
-            steps{
-                bat "terraform plan"
-            }
-        }
+        // stage("Find Infrastructure"){
+        //     steps{
+        //         bat "cd infrastructure-code"
+        //     }
+        // }
+        // stage("Terraform Validate"){
+        //     steps{
+        //         bat "terraform validate"
+        //     }
+        // }
+        // stage("Terraform Plan"){
+        //     steps{
+        //         bat "terraform plan"
+        //     }
+        // }
     }
 }
