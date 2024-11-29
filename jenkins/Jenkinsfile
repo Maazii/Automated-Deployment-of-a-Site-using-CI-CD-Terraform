@@ -7,14 +7,9 @@ pipeline {
                 bat "terraform version"
             }
         }
-        stage("Find Infrastructure"){
+        stage("Find Terraform and Initialize"){
             steps{
-                sh "cd infrastructure-code"
-            }
-        }
-        stage("Terraform Initialize"){
-            steps{
-                bat "terraform init"
+                bat "cd infrastructure-code;terraform init"
             }
         }
         stage("Terraform Validate"){
