@@ -12,18 +12,9 @@ pipeline {
                 bat '''
                     cd .\\infrastructure-code
                     terraform init
+                    terraform validate
                 '''
             }
         }
-        stage("Terraform Validate"){
-            steps{
-                bat "terraform validate"
-            }
-        }
-        // stage("Terraform Plan"){
-        //     steps{
-        //         bat "terraform plan"
-        //     }
-        // }
     }
 }
