@@ -9,7 +9,7 @@ pipeline {
         }
         stage("Find Terraform and Initialize"){
             steps{
-                bat "cd D:\\\"Automated Deployment of a Site using CI-CD & Terraform\\infrastructure-code\";terraform init"
+                bat "cd D:\\\"Automated Deployment of a Site using CI-CD & Terraform\\infrastructure-code\" && terraform init"
             }
         }
         stage("Terraform Validate"){
