@@ -7,20 +7,10 @@ pipeline {
                 bat "terraform version"
             }
         }
-        stage("Find, Initialize, and Plan Infrastructure"){
+        stage("Run Powershell"){
             steps{
-                bat '''
-                    cd .\\infrastructure-code
-                    if exist .terraform (
-                        echo Terraform-Already-Initialized
-                        terraform validate
-                        terraform plan    
-                    )
-                    else (
-                        terraform init
-                        terraform validate
-                        terraform plan
-                    )
+                powershell '''
+                    Write-Output "Hello world!"
                 '''
             }
         }
