@@ -4,29 +4,35 @@ pipeline {
     environment {
         TF_CLI_ARGS="-no-color"
     }
+
+    options {
+        dir("infrastructure-code")
+    }
     
     stages {
         stage("Check Terraform Version"){
             steps{
-                bat "terraform version"
-            }
-        }
-        stage("Run Powershell"){
-            steps{
                 powershell '''
-                    cd .\\infrastructure-code
-                    if (Test-path .terraform) {
-                        Write-Output "Terraform already initialized!"
-                        terraform validate
-                        terraform plan
-                    }
-                    else {
-                        terrafrom init
-                        terraform validate
-                        terraform plan
-                    }
+                    dir
                 '''
             }
         }
+        // stage("Locate, Initialize, Validate, and Plan Infrastructure"){
+        //     steps{
+        //         powershell '''
+        //             cd .\\infrastructure-code
+        //             if (Test-path .terraform) {
+        //                 Write-Output "Terraform already initialized!"
+        //                 terraform validate
+        //                 terraform plan
+        //             }
+        //             else {
+        //                 terrafrom init
+        //                 terraform validate
+        //                 terraform plan
+        //             }
+        //         '''
+        //     }
+        // }
     }
 }
