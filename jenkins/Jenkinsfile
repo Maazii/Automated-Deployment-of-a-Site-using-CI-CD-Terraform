@@ -10,7 +10,17 @@ pipeline {
         stage("Run Powershell"){
             steps{
                 powershell '''
-                    Write-Output "Hello world!"
+                    cd .\\infrastructure-code
+                    if (Test-path .terraform) {
+                        Write-Output "Terraform already initialized!"
+                        terraform validate
+                        terraform plan
+                    }
+                    else {
+                        terrafrom init
+                        terraform validate
+                        terraform plan
+                    }
                 '''
             }
         }
