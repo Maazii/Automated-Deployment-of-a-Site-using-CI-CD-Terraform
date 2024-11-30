@@ -11,9 +11,16 @@ pipeline {
             steps{
                 bat '''
                     cd .\\infrastructure-code
-                    terraform init
-                    terraform validate
-                    terraform plan
+                    if exist .terraform (
+                        echo Terraform-Already-Initialized
+                        terraform validate
+                        terraform plan    
+                    )
+                    else (
+                        terraform init
+                        terraform validate
+                        terraform plan
+                    )
                 '''
             }
         }
