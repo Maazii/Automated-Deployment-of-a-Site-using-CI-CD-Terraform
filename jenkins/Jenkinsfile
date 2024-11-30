@@ -33,7 +33,7 @@ pipeline {
         }
         stage("Add Infrastructure"){
             steps{
-                powershell "terraform apply"
+                powershell "terraform apply -auto-approve"
             }
         }
     }
