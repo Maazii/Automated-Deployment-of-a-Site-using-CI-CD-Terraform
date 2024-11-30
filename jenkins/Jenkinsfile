@@ -12,27 +12,24 @@ pipeline {
     stages {
         stage("Check Terraform Version"){
             steps{
+                powershell "terraform version"
+            }
+        }
+        stage("Locate, Initialize, Validate, and Plan Infrastructure"){
+            steps{
                 powershell '''
-                    dir
+                    if (Test-path .terraform) {
+                        Write-Output "Terraform already initialized!"
+                        terraform validate
+                        terraform plan
+                    }
+                    else {
+                        terrafrom init
+                        terraform validate
+                        terraform plan
+                    }
                 '''
             }
         }
-        // stage("Locate, Initialize, Validate, and Plan Infrastructure"){
-        //     steps{
-        //         powershell '''
-        //             cd .\\infrastructure-code
-        //             if (Test-path .terraform) {
-        //                 Write-Output "Terraform already initialized!"
-        //                 terraform validate
-        //                 terraform plan
-        //             }
-        //             else {
-        //                 terrafrom init
-        //                 terraform validate
-        //                 terraform plan
-        //             }
-        //         '''
-        //     }
-        // }
     }
 }
