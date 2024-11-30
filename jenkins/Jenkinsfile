@@ -31,5 +31,8 @@ pipeline {
                 '''
             }
         }
+        stage("Add Infrastructure"){
+            powershell "terraform apply"
+        }
     }
 }
