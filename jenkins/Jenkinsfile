@@ -6,7 +6,7 @@ pipeline {
     }
 
     options {
-        ws("D:\\\"Automated Deployment of a Site using CI-CD & Terraform\"\\infrastructure-code")
+        ws("D:\\Automated-Deployment-of-a-Site-using-CI-CD-and-Terraform\\infrastructure-code")
     }
     
     stages {
