@@ -17,15 +17,21 @@ pipeline {
         }
         stage("Check for running instances"){
             steps{
-                powershell '''
-                    $holder = aws ec2 describe-instances --query "length(Reservations[*].Instances[*])"
-                    if ($holder -ne "0") {
-                    Write-Output "Yes! There are instances running!"
-                    }
-                    else {
-                    Write-Output "No! There are no instances running!"
-                    } 
-                '''
+                def holder = powershell "aws ec2 describe-instances --query \"length(Reservations[*].Instances[*])\""
+            }
+        }
+        if (holder.equals("0")) {
+            stage("Add Infrastructure"){
+                steps{
+                    echo "Adding Infrastructure!"
+                }
+            }
+        }
+        else {
+            stage("Login to Instance"){
+                steps{
+                    echo "Logging in!"
+                }
             }
         }
         // stage("Locate, Initialize, Validate, and Plan Infrastructure"){
