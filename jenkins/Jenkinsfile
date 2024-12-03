@@ -15,26 +15,39 @@ pipeline {
                 powershell "terraform version"
             }
         }
-        stage("Locate, Initialize, Validate, and Plan Infrastructure"){
+        stage("Check for running instances"){
             steps{
                 powershell '''
-                    if (Test-path .terraform) {
-                        Write-Output "Terraform already initialized!"
-                        terraform validate
-                        terraform plan
+                    $holder = aws ec2 describe-instances --query "length(Reservations[*].Instances[*])"
+                    if ($holder -ne "0") {
+                    Write-Output "Yes! There are instances running!"
                     }
                     else {
-                        terrafrom init
-                        terraform validate
-                        terraform plan
-                    }
+                    Write-Output "No! There are no instances running!"
+                    } 
                 '''
             }
         }
-        stage("Add Infrastructure"){
-            steps{
-                powershell "terraform apply -auto-approve"
-            }
-        }
+        // stage("Locate, Initialize, Validate, and Plan Infrastructure"){
+        //     steps{
+        //         powershell '''
+        //             if (Test-path .terraform) {
+        //                 Write-Output "Terraform already initialized!"
+        //                 terraform validate
+        //                 terraform plan
+        //             }
+        //             else {
+        //                 terrafrom init
+        //                 terraform validate
+        //                 terraform plan
+        //             }
+        //         '''
+        //     }
+        // }
+        // stage("Add Infrastructure"){
+        //     steps{
+        //         powershell "terraform apply -auto-approve"
+        //     }
+        // }
     }
 }
