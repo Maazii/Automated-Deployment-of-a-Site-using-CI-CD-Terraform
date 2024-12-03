@@ -16,8 +16,9 @@ pipeline {
             }
         }
         stage("Check for running instances"){
+            def holder = true
             steps{
-                def holder = true
+                echo "${holder}"
             }
         }
         // if (holder.equals("0")) {
