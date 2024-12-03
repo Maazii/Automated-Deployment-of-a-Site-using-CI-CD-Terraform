@@ -15,25 +15,25 @@ pipeline {
                 powershell "terraform version"
             }
         }
-        stage("Check for running instances"){
-            steps{
-                def holder = powershell "aws ec2 describe-instances --query \"length(Reservations[*].Instances[*])\""
-            }
-        }
-        if (holder.equals("0")) {
-            stage("Add Infrastructure"){
-                steps{
-                    echo "Adding Infrastructure!"
-                }
-            }
-        }
-        else {
-            stage("Login to Instance"){
-                steps{
-                    echo "Logging in!"
-                }
-            }
-        }
+        // stage("Check for running instances"){
+        //     steps{
+        //         def holder = powershell "aws ec2 describe-instances --query \"length(Reservations[*].Instances[*])\""
+        //     }
+        // }
+        // if (holder.equals("0")) {
+        //     stage("Add Infrastructure"){
+        //         steps{
+        //             echo "Adding Infrastructure!"
+        //         }
+        //     }
+        // }
+        // else {
+        //     stage("Login to Instance"){
+        //         steps{
+        //             echo "Logging in!"
+        //         }
+        //     }
+        // }
         // stage("Locate, Initialize, Validate, and Plan Infrastructure"){
         //     steps{
         //         powershell '''
