@@ -15,11 +15,11 @@ pipeline {
                 powershell "terraform version"
             }
         }
-        // stage("Check for running instances"){
-        //     steps{
-        //         def holder = powershell "aws ec2 describe-instances --query \"length(Reservations[*].Instances[*])\""
-        //     }
-        // }
+        stage("Check for running instances"){
+            steps{
+                def holder = true
+            }
+        }
         // if (holder.equals("0")) {
         //     stage("Add Infrastructure"){
         //         steps{
